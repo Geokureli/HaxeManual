@@ -91,7 +91,7 @@ If the final argument of a macro is of type `Array<Expr>`, the macro accepts an 
 
 
 <!--label:macro-instance-arg-->
-#### Instance argument
+#### Instance Argument
 
 If the macro is an instance method, the first arg will be the expression used to reference the instance:
 
