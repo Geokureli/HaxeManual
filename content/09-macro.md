@@ -94,54 +94,12 @@ If the final argument of a macro is of type `Array<Expr>`, the macro accepts an 
 
 If the macro is an instance method, the first arg will be the expression used to reference the instance:
 
-```haxe
-import haxe.macro.Expr;
-import haxe.macro.ExprTools;
-import haxe.macro.MacroStringTools;
+[code asset](assets/InstanceExprArgMacro.hx)
 
-// use this for macros or other classes
-class Logger {
-	public final id:String;
-	public function new(id:String) {
-		this.id = id;
-	}
-	
-	inline public function log(data:Any, logID:String, ?pos) {
-		haxe.Log.trace('$id: $logID = [$data]', pos);
-	}
-	
-	macro public function logExpr(inst:Expr, data:Expr):Expr {
-		return eval(inst, data);
-	}
-	
-	#if macro
-	static public function eval(inst:Expr, obj:Expr):Expr {
-		final str = MacroStringTools.formatString;
-		final id = str('${ExprTools.toString(obj)}', obj.pos);
-		
-		return macro {
-			@:pos(obj.pos)
-			$inst.log($obj, $id);
-		};
-	}
-	#end
-}
-```
 Usage:
-```haxe
-class Test {
-	static function main() {
-		final factLogger = new Logger("Fact");
-		final lieLogger = new Logger("Lie");
-		
-		final theory1 = {statement: "Haxe is great!", conclusion: true};
-		final theory2 = {statement: "7 > 9", conclusion: false};
-		
-		(theory1.conclusion ? factLogger : lieLogger).logExpr(theory1.statement);
-		(theory2.conclusion ? factLogger : lieLogger).logExpr(theory2.statement);
-	}
-}
-```
+
+[code asset](assets/InstanceExprArgUsage.hx)
+
 This outputs at runtime:
 ```
 Test.hx:9: Fact: theory1.statement = [Haxe is great!]
