@@ -13,18 +13,18 @@ class Logger {
 		haxe.Log.trace('$id: $logID = [$data]', pos);
 	}
 	
-	macro public function logExpr(inst:Expr, data:Expr):Expr {
-		return eval(inst, data);
+	macro public function logExpr(instance:Expr, data:Expr):Expr {
+		return eval(instance, data);
 	}
 	
 	#if macro
-	static public function eval(inst:Expr, obj:Expr):Expr {
+	static public function eval(instance:Expr, obj:Expr):Expr {
 		final str = MacroStringTools.formatString;
 		final id = str('${ExprTools.toString(obj)}', obj.pos);
 		
 		return macro {
 			@:pos(obj.pos)
-			$inst.log($obj, $id);
+			$instance.log($obj, $id);
 		};
 	}
 	#end
