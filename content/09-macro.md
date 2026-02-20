@@ -89,6 +89,7 @@ If the final argument of a macro is of type `Array<Expr>`, the macro accepts an 
 [code asset](assets/MacroArgumentsRest.hx)
 
 
+
 <!--label:macro-instance-arg-->
 #### Instance argument
 
@@ -105,6 +106,8 @@ This outputs at runtime:
 Test.hx:9: Fact: theory1.statement = [Haxe is great!]
 Test.hx:10: Lie: theory2.statement = [7 > 9]
 ```
+
+
 
 <!--label:macro-reification-->
 ### Reification
