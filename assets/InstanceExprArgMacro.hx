@@ -19,8 +19,7 @@ class Logger {
 	
 	#if macro
 	static public function eval(instance:Expr, obj:Expr):Expr {
-		final str = MacroStringTools.formatString;
-		final id = str('${ExprTools.toString(obj)}', obj.pos);
+		final id = MacroStringTools.formatString('${ExprTools.toString(obj)}', obj.pos);
 		
 		return macro {
 			@:pos(obj.pos)
